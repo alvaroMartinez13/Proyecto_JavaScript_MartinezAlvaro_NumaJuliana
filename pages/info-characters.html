@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Wars Data Explorer</title>
+    <link rel="stylesheet" href="../styles/characters.css" />
+    <script defer src="../script/tipo.js"></script>
+    <script defer src="../script/data_characters.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>Star Wars Wiki Explorer</h1>
+        <nav>
+          <ul>
+            <li>
+              <a>
+                <img src="../images/character.png" alt="characters" />
+                <p>Personajes</p>
+              </a>
+            </li>
+            <li>
+              <a href="info-films.html">
+                <img src="../images/films.png" alt="films" />
+                <p>Películas</p>
+              </a>
+            </li>
+            <li>
+              <a href="info-planets.html">
+                <img src="../images/planet.png" alt="planets" />
+                <p>Planetas</p>
+              </a>
+            </li>
+            <li>
+              <a href="info-starship.html">
+                <img src="../images/spaceships.png" alt="spaceships" />
+                <p>Naves</p>
+              </a>
+            </li>
+            <li>
+              <a href="info-vehicles.html"></a>
+              <img src="../images/vehicles.png" alt="vehicles" />
+              <p>Vehículos</p>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <nav>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+      </nav>
+    </header>
+
+    <div id="fullscreen-menu" class="fullscreen-menu">
+      <div class="menu-content">
+        <span class="close-btn" id="close-btn">&times;</span>
+        <ul>
+          <li>
+            <img src="../images/character.png" alt="characters" />
+            <a> Personajes </a>
+          </li>
+          <li>
+            <img src="../images/films.png" alt="films" />
+            <a href="info-films.html">Películas</a>
+          </li>
+          <li>
+            <img src="../images/planet.png" alt="planets" />
+            <a href="info-planets.html">Planetas</a>
+          </li>
+          <li>
+            <img src="../images/spaceships.png" alt="spaceships" />
+            <a id="nave" href="info-starship.html">Naves</a>
+          </li>
+          <li>
+            <img id="car_img" src="../images/vehicles.png" alt="vehicles" />
+            <a id="car" href="info-vehicles.html">Vehículos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <main>
+      <section id="people" class="section">
+        <h2>Personajes</h2>
+        <div class="menu">
+          <button id="listaPersonajes" onclick="showSection('character-list')">
+            Lista de Personajes
+          </button>
+          <button id="listaEspecies" onclick="showSection('species-list')">
+            Lista de Especies
+          </button>
+          <button onclick="showSection('character-info','search')">
+            Personaje específico
+          </button>
+        </div>
+        <div id="character-list" class="content hidden">
+          <h3>Lista de Personajes</h3>
+          <div class="table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Género</th>
+                  <th>Estatura</th>
+                  <th>Año de nacimiento</th>
+                  <th>Lugar de nacimiento</th>
+                </tr>
+              </thead>
+              <tbody id="personajes"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="species-list" class="content hidden">
+          <h3>Lista de Especies</h3>
+          <div class="table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Especies</th>
+                </tr>
+              </thead>
+              <tbody id="especie"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="search" class="search hidden">
+          <label for="search-character">Buscar personaje:</label>
+          <input id="search-character" type="text" />
+          <button id="busqueda">Buscar</button>
+        </div>
+        <div id="character-info" class="content hidden">
+          <h3>Personaje</h3>
+          <div class="table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Género</th>
+                  <th>Especie</th>
+                  <th>Fecha de cumpleaños</th>
+                  <th>Lugar de nacimiento</th>
+                </tr>
+              </thead>
+              <tbody id="persona"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Powered by SWAPI &amp; Designed with <span>&hearts;</span></p>
+    </footer>
+  </body>
+</html>
