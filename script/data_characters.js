@@ -122,6 +122,9 @@ async function listSpecies() {
     <div class="card">
       <div class="card-header">
         <h3>${especie.name}</h3>
+      </div>
+
+    </div>
   `).join("");
 }
 
