@@ -209,7 +209,39 @@
     color: #e3e3e3;
     animation: pulse 1.5s infinite;
   }
-  
+
+  /* Agrega estilos para las cartas */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  width: 250px;
+  color: #d3d3d3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+}
+
+.card h4 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.card p {
+  margin: 0.5rem 0;
+}
+
   @keyframes pulse {
     0% {
       transform: scale(1);
@@ -313,6 +345,11 @@
   
     main {
       margin-top: 5rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 90%;
     }
   }
   
