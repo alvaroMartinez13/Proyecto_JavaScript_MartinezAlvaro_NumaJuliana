@@ -35,60 +35,61 @@ async function buscarElementoApi(api) {
   }
 }
 
-// Listar vehículos
+// Mostrar vehículos en cartas
 async function listaVehiculos() {
   const vehiculo = await uploadData(5);
   const vehiculos_lista = vehiculo.results;
-  const tableVehicle = document.getElementById("vehiculos");
+  const container = document.getElementById("vehicle-cards");
+  let elemento = ``;
 
   if (!vehiculos_lista || vehiculos_lista.length === 0) {
     console.log("No se encontraron vehículos.\n");
     return;
   }
 
-  const promesas = vehiculos_lista.map(async (vehiculo) => {
+  for (let vehiculo of vehiculos_lista) {
     const vehiculo_url = vehiculo.url;
     const caracteristicaEspecifica = await buscarElementoApi(vehiculo_url);
-    return `
-      <tr>
-        <td>${caracteristicaEspecifica.result.properties.name}</td>
-        <td>${caracteristicaEspecifica.result.properties.cost_in_credits}</td>
-        <td>${caracteristicaEspecifica.result.properties.consumables}</td>
-        <td>${caracteristicaEspecifica.result.properties.vehicle_class}</td>
-        <td>${caracteristicaEspecifica.result.properties.passengers}</td>
-      </tr>
+    elemento += `
+      <div class="card">
+        <h4>${caracteristicaEspecifica.result.properties.name}</h4>
+        <p><strong>Costo en Créditos:</strong> ${caracteristicaEspecifica.result.properties.cost_in_credits}</p>
+        <p><strong>Consumible:</strong> ${caracteristicaEspecifica.result.properties.consumables}</p>
+        <p><strong>Clase:</strong> ${caracteristicaEspecifica.result.properties.vehicle_class}</p>
+        <p><strong>Pasajeros:</strong> ${caracteristicaEspecifica.result.properties.passengers}</p>
+      </div>
     `;
-  });
+  }
 
-  const elementos = await Promise.all(promesas);
-  tableVehicle.innerHTML = elementos.join("");
+  container.innerHTML = elemento;
 }
 
-//Mostrar los modelos de los vehículos
+// Mostrar modelos en cartas
 async function mostrarModelosVehiculos() {
   try {
-    const naves = await uploadData(5);
-    const vehiculos_modelos = naves.results;
-    const tableModels = document.getElementById("modelo");
+    const vehiculos = await uploadData(5);
+    const vehiculos_modelos = vehiculos.results;
+    const container = document.getElementById("model-cards");
+    let elemento = ``;
 
-    const promesas = vehiculos_modelos.map(async (vehiculo) => {
+    for (let vehiculo of vehiculos_modelos) {
       const vehiculo_url = vehiculo.url;
       const caracteristicaEspecifica = await buscarElementoApi(vehiculo_url);
-      return `
-        <tr>
-          <td>${caracteristicaEspecifica.result.properties.name}</td>
-          <td>${caracteristicaEspecifica.result.properties.model}</td>
-        </tr>
+      elemento += `
+        <div class="card">
+          <h4>${caracteristicaEspecifica.result.properties.name}</h4>
+          <p><strong>Modelo:</strong> ${caracteristicaEspecifica.result.properties.model}</p>
+        </div>
       `;
-    });
+    }
 
-    const elementos = await Promise.all(promesas);
-    tableModels.innerHTML = elementos.join("");
+    container.innerHTML = elemento;
   } catch (error) {
     console.error("Error al cargar:", error);
   }
 }
 
-//Eventos
+// Eventos
 listVehicle.addEventListener("click", listaVehiculos);
 listModels.addEventListener("click", mostrarModelosVehiculos);
+
