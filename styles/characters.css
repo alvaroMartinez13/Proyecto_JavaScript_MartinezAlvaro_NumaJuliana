@@ -72,7 +72,6 @@ header {
 }
 
 .logo nav ul li {
-  border: 1px solid #333;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -220,26 +219,6 @@ main {
 .search:not(.hidden) {
   opacity: 1;
   transform: translateY(0);
-}
-
-/*Tabla*/
-.table-container {
-  width: 100%;
-  border: 1px solid #d8d2d2;
-  border-collapse: collapse;
-  margin-top: 5px;
-  border-radius: 5px;
-}
-
-th,
-td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-  vertical-align: top;
-  text-align: center;
-  width: 5%;
-  text-transform: capitalize;
 }
 
 /* Pie de página */
