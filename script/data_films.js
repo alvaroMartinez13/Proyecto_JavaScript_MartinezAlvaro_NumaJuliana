@@ -50,16 +50,15 @@ async function buscarElementoApi(api) {
 //Mostrar información del episodio
 function informacionEpisodio(info) {
   try {
-    let elemento = ``;
-    elemento += `
-    <tr>
-        <td>${peliculas[info.episode_id - 1]}</td>
-        <td>${info.release_date}</td>
-        <td>${info.director}
-    </tr>
-    `;
-
-    return elemento;
+      return `
+        <div class="card">
+          <div class="card-header">
+            <h3>${peliculas[info.episode_id - 1]}</h3>
+            <span>${info.release_date}</span>
+            <span>${info.director}</span>
+          </div>
+        </div>
+      `).join("");
   } catch (error) {
     console.error(error);
   }
@@ -104,11 +103,13 @@ async function cacteristicaEpisodio(info, opcion) {
       );
 
       return `
-        <tr>
-            <td>${caracteristicaEspecifica.result.properties.name}</td>
-            <td> ${info.episode_id}</td>
-        </tr>
-        `;
+        <div class="card">
+          <div class="card-header">
+            <h3>${caracteristicaEspecifica.result.properties.name}</h3>
+            <span>${info.episode_id}</span>
+          </div>
+        </div>
+      `).join("");
     } catch (error) {
       console.error("Error al cargar:", error);
     }
