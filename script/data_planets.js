@@ -44,12 +44,24 @@ async function buscarElementoApi(api) {
   }
 }
 
-//Listar Planetas
+// Función para crear una carta con la información del planeta
+function createPlanetCard(planet) {
+  return `
+    <div class="card">
+      <div class="card-content">
+        <h3 class="card-title">${planet.name}</h3>
+        <p class="card-description">El planeta ${planet.name} tiene un diámetro de ${planet.diameter} unidades, con un clima ${planet.climate} y un terreno compuesto por ${planet.terrain}.</p>
+      </div>
+    </div>
+  `;
+}
+
+// Función para listar planetas en formato de cartas
 async function listaPlanetas() {
   const datos_planetas = await uploadData(3);
   const planetas = datos_planetas.results;
-  const tablePlanets = document.getElementById("planetas");
-  let elementTable = ``;
+  const cardsContainer = document.getElementById("planets-cards");
+  let cardsHTML = '';
 
   if (!planetas || planetas.length === 0) {
     console.log("No se encontraron planetas.\n");
@@ -61,31 +73,31 @@ async function listaPlanetas() {
     planetas.map(planeta => buscarElementoApi(planeta.url))
   );
 
-  // Construye el contenido HTML
+  // Construye el contenido de las cartas
   planetasInfo.forEach(planeta_especifico => {
-    const descripcion = `El planeta ${planeta_especifico.result.properties.name} tiene un diámetro de ${planeta_especifico.result.properties.diameter} unidades, con un clima ${planeta_especifico.result.properties.climate} y un terreno compuesto por ${planeta_especifico.result.properties.terrain}.`;
-
-    elementTable += `
-      <tr>
-        <td>${planeta_especifico.result.properties.name}</td>
-        <td>${descripcion}</td>
-      </tr>
-    `;
+    const planet = planeta_especifico.result.properties;
+    cardsHTML += createPlanetCard({
+      name: planet.name,
+      diameter: planet.diameter,
+      climate: planet.climate,
+      terrain: planet.terrain
+    });
   });
 
-  tablePlanets.innerHTML = elementTable;
+  cardsContainer.innerHTML = cardsHTML;
 }
 
-//Muestra la comparación de las características de los planetas
+// Función para mostrar la comparación de planetas en formato de cartas
 async function comparacionPlanetas(planetas) {
-  const tablePlanets = document.getElementById("comparaPlanetas");
-  let element = "";
+  const cardsContainer = document.getElementById("planets-compare-cards");
+  let cardsHTML = '';
 
   // Realiza todas las solicitudes en paralelo
   const planetasInfo = await Promise.all(
     planetas.map(planeta => buscarElementoApi(planeta.url))
   );
 
+  // Construye el contenido de las cartas
   planetasInfo.forEach(infoPlanet => {
     const caracteristicaEspecifica = infoPlanet.result.properties;
     const poblacion =
@@ -93,21 +105,23 @@ async function comparacionPlanetas(planetas) {
         ? "Desconocida"
         : caracteristicaEspecifica.population;
 
-    element += `
-      <tr>
-        <td>${caracteristicaEspecifica.name}</td>
-        <td>Diámetro: ${caracteristicaEspecifica.diameter} unidades</td>
-        <td>Población: ${poblacion}</td>
-        <td>Clima: ${caracteristicaEspecifica.climate}</td>
-        <td>Gravedad: ${caracteristicaEspecifica.gravity}</td>
-      </tr>
+    cardsHTML += `
+      <div class="card">
+        <div class="card-content">
+          <h3 class="card-title">${caracteristicaEspecifica.name}</h3>
+          <p class="card-description">Diámetro: ${caracteristicaEspecifica.diameter} unidades</p>
+          <p class="card-description">Población: ${poblacion}</p>
+          <p class="card-description">Clima: ${caracteristicaEspecifica.climate}</p>
+          <p class="card-description">Gravedad: ${caracteristicaEspecifica.gravity}</p>
+        </div>
+      </div>
     `;
   });
 
-  tablePlanets.innerHTML = element;
+  cardsContainer.innerHTML = cardsHTML;
 }
 
-//Eventos
+// Eventos
 planetas.addEventListener("click", async () => {
   await listaPlanetas();
 });
