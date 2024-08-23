@@ -37,7 +37,7 @@ async function buscarElementoApi(api) {
   }
 }
 
-// Listar naves espaciales
+// Mostrar naves espaciales en cartas
 async function listaNaves() {
   const naves = await uploadData(4);
   const naves_lista = naves.results;
@@ -54,28 +54,48 @@ async function listaNaves() {
   return navesDetalles.map((nave) => nave.properties);
 }
 
-// Mostrar los modelos de las naves
-async function mostrarModelos() {
+// Mostrar las cartas de naves
+async function mostrarNaves() {
   const navesDetalles = await listaNaves();
-  const tableModel = document.getElementById("Modelos");
+  const container = document.getElementById("navesContainer");
   let elemento = ``;
 
   for (let nave of navesDetalles) {
     elemento += `
-      <tr>
-        <td>${nave.name}</td>
-        <td>${nave.model}</td>
-      </tr>
+      <div class="card">
+        <h4>${nave.name}</h4>
+        <p><strong>Costo:</strong> ${nave.cost_in_credits}</p>
+        <p><strong>Consumible:</strong> ${nave.consumables}</p>
+        <p><strong>MGLT:</strong> ${nave.MGLT}</p>
+      </div>
     `;
   }
 
-  tableModel.innerHTML = elemento;
+  container.innerHTML = elemento;
 }
 
-// Mostrar los pilotos de las naves
+// Mostrar los modelos de las naves en cartas
+async function mostrarModelos() {
+  const navesDetalles = await listaNaves();
+  const container = document.getElementById("modelsContainer");
+  let elemento = ``;
+
+  for (let nave of navesDetalles) {
+    elemento += `
+      <div class="card">
+        <h4>${nave.name}</h4>
+        <p><strong>Modelo:</strong> ${nave.model}</p>
+      </div>
+    `;
+  }
+
+  container.innerHTML = elemento;
+}
+
+// Mostrar los pilotos en cartas
 async function mostrarPilotos() {
   const navesDetalles = await listaNaves();
-  const tablePilot = document.getElementById("pilotos");
+  const container = document.getElementById("pilotsContainer");
   let elemento = ``;
 
   for (let nave of navesDetalles) {
@@ -86,55 +106,58 @@ async function mostrarPilotos() {
 
     pilotos.forEach((piloto) => {
       elemento += `
-        <tr>
-          <td>${nave.name}</td>
-          <td>${piloto.properties.name}</td>
-        </tr>
+        <div class="card">
+          <h4>${nave.name}</h4>
+          <p><strong>Piloto:</strong> ${piloto.properties.name}</p>
+        </div>
       `;
     });
   }
 
-  tablePilot.innerHTML = elemento;
+  container.innerHTML = elemento;
 }
 
-// Mostrar las velocidades atmosféricas de las naves
-async function mostrarVelocidad() {
+// Mostrar la velocidad en cartas
+async function mostrarVelocidades() {
   const navesDetalles = await listaNaves();
-  const tableSpeed = document.getElementById("velocidad");
+  const container = document.getElementById("speedContainer");
   let elemento = ``;
 
   for (let nave of navesDetalles) {
     elemento += `
-      <tr>
-        <td>${nave.name}</td>
-        <td>${nave.max_atmosphering_speed}</td>
-      </tr>
+      <div class="card">
+        <h4>${nave.name}</h4>
+        <p><strong>Velocidad Atmosférica:</strong> ${nave.max_atmosphering_speed}</p>
+      </div>
     `;
   }
 
-  tableSpeed.innerHTML = elemento;
+  container.innerHTML = elemento;
 }
 
-// Eventos
-listaNave.addEventListener("click", async () => {
-  const naves = await listaNaves();
-  const tableListaNave = document.getElementById("Nave");
-  let elemento = ``;
+// Función principal para mostrar datos según la sección activa
+function showSection(sectionId) {
+  const sections = document.querySelectorAll('.content');
+  sections.forEach((section) => {
+    if (section.id === sectionId) {
+      section.classList.remove('hidden');
+    } else {
+      section.classList.add('hidden');
+    }
+  });
 
-  for (let nave of naves) {
-    elemento += `
-    <tr>
-      <td>${nave.name}</td>
-      <td>${nave.cost_in_credits}</td>
-      <td>${nave.consumables}</td>
-      <td>${nave.MGLT}</td>
-    </tr>
-    `;
+  switch (sectionId) {
+    case 'starship-list':
+      mostrarNaves();
+      break;
+    case 'starship-models':
+      mostrarModelos();
+      break;
+    case 'starship-pilot':
+      mostrarPilotos();
+      break;
+    case 'starship-speed':
+      mostrarVelocidades();
+      break;
   }
-
-  tableListaNave.innerHTML = elemento;
-});
-
-listaModelo.addEventListener("click", mostrarModelos);
-listPilotos.addEventListener("click", mostrarPilotos);
-listSpeeds.addEventListener("click", mostrarVelocidad);
+}
