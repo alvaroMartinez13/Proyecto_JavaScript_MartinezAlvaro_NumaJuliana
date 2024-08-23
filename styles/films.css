@@ -222,6 +222,27 @@
       transform: scale(1);
     }
   }
+
+.card {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 16px;
+  padding: 16px;
+  text-align: center;
+  width: 200px;
+  background-color: #000000;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-header h3 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
   
   /* Estilos para dispositivos móviles*/
   @media (max-width: 768px) {
@@ -314,6 +335,11 @@
   
     main {
       margin-top: 5rem;
+    }
+
+    .card {
+      width: 100%;
+      margin: 8px 0;
     }
   }
   
