@@ -93,13 +93,17 @@ async function characterSearch(uid) {
   const planeta = await planetSearch(number);
 
   return `
-    <tr>
-        <td>${personajes_propiedades.name}</td>
-        <td>${personajes_propiedades.gender}</td>
-        <td>${personajes_propiedades.height}</td>
-        <td>${personajes_propiedades.birth_year}</td>
-        <td>${planeta}</td>
-    </tr>
+    <div class="card">
+      <div class="card-header">
+        <h3>${personajes_propiedades.name}</h3>
+      </div>
+      <div class="card-body">
+        <p><strong>Género:</strong> ${personajes_propiedades.gender}</p>
+        <p><strong>Estatura:</strong> ${personajes_propiedades.height}</p>
+        <p><strong>Año de nacimiento:</strong> ${personajes_propiedades.birth_year}</p>
+        <p><strong>Planeta de origen:</strong> ${planeta}</p>
+      </div>
+    </div>
   `;
 }
 
@@ -115,10 +119,10 @@ async function listSpecies() {
   const especies_propiedades = especies.results;
 
   return especies_propiedades.map(especie => `
-      <tr>
-        <td>${especie.name}</td>
-      </tr>
-    `).join("");
+    <div class="card">
+      <div class="card-header">
+        <h3>${especie.name}</h3>
+  `).join("");
 }
 
 //Planetas
