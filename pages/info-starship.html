@@ -39,9 +39,10 @@
               </a>
             </li>
             <li>
-              <a href="info-vehicles.html"></a>
-              <img src="../images/vehicles.png" alt="vehicles" />
-              <p>Vehículos</p>
+              <a href="info-vehicles.html">
+                <img src="../images/vehicles.png" alt="vehicles" />
+                <p>Vehículos</p>
+              </a>
             </li>
           </ul>
         </nav>
@@ -84,71 +85,25 @@
         <h2>Naves Espaciales</h2>
         <div class="menu">
           <button id="listNaves" onclick="showSection('starship-list')">Lista de Naves</button>
-          <button id="listModelos" onclick="showSection('starship-models')">
-            Modelos de Naves
-          </button>
+          <button id="listModelos" onclick="showSection('starship-models')">Modelos de Naves</button>
           <button id="listPilotos" onclick="showSection('starship-pilot')">Piloto</button>
-          <button id="listSpeeds" onclick="showSection('starship-speed')">
-            Velocidad Atmosférica
-          </button>
+          <button id="listSpeeds" onclick="showSection('starship-speed')">Velocidad Atmosférica</button>
         </div>
         <div id="starship-list" class="content hidden">
           <h3>Lista de Naves</h3>
-          <div class="table-container">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Nave</th>
-                  <th>Costo en Créditos</th>
-                  <th>Consumible</th>
-                  <th>Mega Luz(MGT)/h</th>
-                </tr>
-              </thead>
-              <tbody id="Nave"></tbody>
-            </table>
-          </div>
+          <div id="navesContainer" class="card-container"></div>
         </div>
         <div id="starship-models" class="content hidden">
           <h3>Modelos de Naves</h3>
-          <div class="table-container">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Nave</th>
-                  <th>Modelo</th>
-                </tr>
-              </thead>
-              <tbody id="Modelos"></tbody>
-            </table>
-          </div>
+          <div id="modelsContainer" class="card-container"></div>
         </div>
         <div id="starship-pilot" class="content hidden">
           <h3>Piloto</h3>
-          <div class="table-container">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Nave</th>
-                  <th>Piloto</th>
-                </tr>
-              </thead>
-              <tbody id="pilotos"></tbody>
-            </table>
-          </div>
+          <div id="pilotsContainer" class="card-container"></div>
         </div>
         <div id="starship-speed" class="content hidden">
           <h3>Velocidad Atmosférica</h3>
-          <div class="table-container">
-            <table class="custom-table">
-              <thead>
-                <tr>
-                  <th>Nave</th>
-                  <th>Velocidad</th>
-                </tr>
-              </thead>
-              <tbody id="velocidad"></tbody>
-            </table>
-          </div>
+          <div id="speedContainer" class="card-container"></div>
         </div>
       </section>
     </main>
