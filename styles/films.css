@@ -223,6 +223,12 @@
     }
   }
 
+#info-films, #"info-characters, #info-planets, #info-starship, #"info-vehicles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .card {
   border: 1px solid #000000;
   border-radius: 8px;
