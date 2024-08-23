@@ -72,7 +72,6 @@
   }
   
   .logo nav ul li {
-    border: 1px solid #333;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -179,17 +178,6 @@
     border-radius: 5px;
   }
   
-  th,
-  td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-    vertical-align: top;
-    text-align: center;
-    width: 5%;
-    text-transform: capitalize;
-  }
-  
   /* Pie de página */
   footer {
     text-align: center;
@@ -223,7 +211,7 @@
     }
   }
 
-#info-films, #"info-characters, #info-planets, #info-starship, #"info-vehicles {
+#info-films, #"info-characters, #info-planets, #info-starship, #info-vehicles {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
