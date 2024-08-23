@@ -58,7 +58,7 @@ function informacionEpisodio(info) {
             <span>${info.director}</span>
           </div>
         </div>
-      `).join("");
+      `;
   } catch (error) {
     console.error(error);
   }
@@ -109,7 +109,7 @@ async function cacteristicaEpisodio(info, opcion) {
             <span>${info.episode_id}</span>
           </div>
         </div>
-      `).join("");
+      `;
     } catch (error) {
       console.error("Error al cargar:", error);
     }
