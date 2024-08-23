@@ -210,6 +210,44 @@
     color: #e3e3e3;
     animation: pulse 1.5s infinite;
   }
+
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: #000000;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    max-width: 100%;
+    padding: 1rem;
+  }
+  
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-content {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-description {
+    font-size: 1rem;
+    color: #ffffff;
+  }
+  
   
   @keyframes pulse {
     0% {
