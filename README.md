@@ -41,4 +41,5 @@ Descarga en ZIP, extrae en su equipo. Ya abierto en VS Code, click en "index.htm
 -  Adaptabilidad de la interfaz a diferentes tamaños de pantalla, con opciones de visualización en formato lista o cuadrícula.
 
 ## ✍️ Autora
+- Alvaro Martinez
 - Juliana Numa 💻🪫
